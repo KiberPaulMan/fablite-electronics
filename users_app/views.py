@@ -2,9 +2,10 @@ from django.shortcuts import redirect, render
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated
-from .forms import SignupForm
+from .forms import SignupForm, AuthUserForm
 
 
 def register_page(request):
@@ -22,6 +23,29 @@ def register_page(request):
 def successful_registration(request):
     """ Страница после успешной регистрации"""
     return render(request, 'users_app/success_register_user.html')
+
+
+def auth_user(request):
+    """Аутентификация пользователя"""
+    if request.method == 'POST':
+        form = AuthUserForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+
+            context = {'is_form': False}
+
+            if user is not None:
+                context['message'] = f'Пользователь {username} аутентифицирован!'
+            else:
+                context['message'] = 'Нет такого пользователя с таким паролем!'
+
+            return render(request, 'users_app/auth_user.html', context)
+    else:
+        form = AuthUserForm()
+        return render(request, 'users_app/auth_user.html', {'form': form, 'is_form': True})
 
 
 # Описание API документации

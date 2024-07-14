@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth user</title>
+</head>
+<body>
+    <h1>Аутентификация пользователя</h1>
+
+    {% if is_form == False %}
+
+        <h2>{{ message }}</h2>
+
+
+    {% else %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="auth user">
+        </form>
+    {% endif %}
+</body>
+</html>
