@@ -26,3 +26,12 @@ http://localhost:8000/register/
 ```
 http://localhost:8000/api/docs/
 ```
+
+#### Авторизация работает через JWT токен. Получить токен(1). Передать заголовок в запрос(2):
+1. ```
+   http://127.0.0.1:8000/api/v1/token/
+   ```
+
+2.```
+{"Authorization": Bearer token}
+```
