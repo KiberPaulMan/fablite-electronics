@@ -17,12 +17,12 @@ docker-compose run backend python manage.py createsuperuser
 
 ### Начало работы:
 
-#### Регистрация нового пользователя
+#### Регистрация нового пользователя:
 ```
 http://localhost:8000/register/
 ```
 
-#### Документация по API
+#### Документация по API:
 ```
 http://localhost:8000/api/docs/
 ```
