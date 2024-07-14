@@ -34,5 +34,5 @@ http://127.0.0.1:8000/api/v1/token/
 ```
 ##### Передать заголовок в запрос:
 ```
-{Authorization: Bearer token}
+{Authorization: Bearer access_token}
 ```
